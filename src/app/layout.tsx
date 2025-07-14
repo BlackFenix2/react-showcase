@@ -31,9 +31,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" data-toolpad-color-scheme="light">
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <NextAppProvider navigation={NAVIGATION} branding={BRANDING}>
-            {props.children}
-          </NextAppProvider>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <NextAppProvider navigation={NAVIGATION} branding={BRANDING}>
+              {props.children}
+            </NextAppProvider>
+          </React.Suspense>
         </AppRouterCacheProvider>
       </body>
     </html>
