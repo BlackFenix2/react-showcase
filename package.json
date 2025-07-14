@@ -1,0 +1,38 @@
+{
+  "name": "react-showcase",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "slicemachine": "start-slicemachine"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/icons-material": "^7",
+    "@mui/material": "^7",
+    "@mui/material-nextjs": "^7",
+    "@prismicio/client": "^7.18.0",
+    "@prismicio/next": "^2.0.1",
+    "@prismicio/react": "^3.2.1",
+    "@toolpad/core": "0.16.0",
+    "framer-motion": "^12.23.3",
+    "next": "^15",
+    "react": "^19",
+    "react-dom": "^19",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@slicemachine/adapter-next": "^0.3.80",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "^15",
+    "slice-machine-ui": "^2.17.1",
+    "typescript": "^5"
+  }
+}
