@@ -15,7 +15,6 @@
     "@mui/material": "^7",
     "@mui/material-nextjs": "^7",
     "@toolpad/core": "0.16.0",
-    "axios": "^1.10.0",
     "canvas": "^3.1.2",
     "d3-timer": "^3.0.1",
     "easy-peasy": "^6.1.0",
