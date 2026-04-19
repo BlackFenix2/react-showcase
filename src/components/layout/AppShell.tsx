@@ -90,7 +90,11 @@ export default function AppShell(props: { children: React.ReactNode }) {
   const drawerContent = (
     <Box sx={{ display: "flex", minHeight: "100%", flexDirection: "column" }}>
       <Box sx={{ px: 2.5, py: 3 }}>
-        <Typography component={Link} href="/" sx={{ color: "inherit", textDecoration: "none", fontSize: 22, fontWeight: 800 }}>
+        <Typography
+          component={Link}
+          href="/"
+          sx={{ color: "inherit", textDecoration: "none", fontSize: 22, fontWeight: 800 }}
+        >
           React Showcase
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>

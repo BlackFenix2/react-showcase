@@ -16,9 +16,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <StoreProvider store={store}>
-              <React.Suspense fallback={<LinearProgress />}>
-                {props.children}
-              </React.Suspense>
+              <React.Suspense fallback={<LinearProgress />}>{props.children}</React.Suspense>
             </StoreProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>

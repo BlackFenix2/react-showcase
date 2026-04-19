@@ -13,13 +13,9 @@ export const FirstCard = styled.div<{
   right: 0;
   top: 50%;
   /* Slide from center to below */
-  transform: ${(props) =>
-    props.flip ? "translateY(60%)" : "translateY(-50%)"};
+  transform: ${(props) => (props.flip ? "translateY(60%)" : "translateY(-50%)")};
   opacity: ${(props) => (props.flip ? 0 : 1)};
-  transition: ${(props) =>
-    !props.reset
-      ? "transform 0.3s, opacity 0.3s"
-      : "transform 0.0s, opacity 0.0s"};
+  transition: ${(props) => (!props.reset ? "transform 0.3s, opacity 0.3s" : "transform 0.0s, opacity 0.0s")};
 `;
 
 export const SecondCard = styled.div<{
@@ -34,13 +30,9 @@ export const SecondCard = styled.div<{
   right: 0;
   top: 50%;
   /* Slide from above to center */
-  transform: ${(props) =>
-    props.flip ? "translateY(-50%)" : "translateY(-160%)"};
+  transform: ${(props) => (props.flip ? "translateY(-50%)" : "translateY(-160%)")};
   opacity: ${(props) => (props.flip ? 1 : 0)};
-  transition: ${(props) =>
-    !props.reset
-      ? "transform 0.3s, opacity 0.3s"
-      : "transform 0.0s, opacity 0.0s"};
+  transition: ${(props) => (!props.reset ? "transform 0.3s, opacity 0.3s" : "transform 0.0s, opacity 0.0s")};
 `;
 
 interface Props {
@@ -84,12 +76,7 @@ const FlipCard: React.FC<Props> = ({ time: newTime, size }) => {
 
   return (
     <>
-      <FirstCard
-        flip={flip}
-        reset={reset}
-        size={size}
-        onTransitionEnd={transitionEnded}
-      >
+      <FirstCard flip={flip} reset={reset} size={size} onTransitionEnd={transitionEnded}>
         {time.previousTime.toString().padStart(2, "0")}
       </FirstCard>
       <SecondCard flip={flip} reset={reset} size={size}>
