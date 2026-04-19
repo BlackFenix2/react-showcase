@@ -11,14 +11,9 @@ interface CountdownUnitProps {
 }
 
 const CountdownUnit = (props: CountdownUnitProps) => {
-  // get x percent of y
+  const calculatedPercent = (props.time / props.maxValue) * 100;
+  const percent = props.isInverted ? 100 - calculatedPercent : calculatedPercent;
 
-  const [percent, setPercent] = React.useState(0);
-
-  useEffect(() => {
-    const calculatedPercent = (props.time / props.maxValue) * 100;
-    setPercent(props.isInverted ? 100 - calculatedPercent : calculatedPercent);
-  }, [props.time, props.maxValue, props.isInverted, percent]);
   return (
     <Box
       sx={{

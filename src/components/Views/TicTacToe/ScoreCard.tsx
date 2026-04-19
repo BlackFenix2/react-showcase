@@ -13,18 +13,20 @@ import {
 
 interface Props {
   clearScore: () => void;
-  stats: {
-    winner: string;
-    gameNumber: number;
-    totalMoves: number;
-    boxOrder: [number];
-  }[];
+  scoreClicked?: (boxOrder: number[]) => void;
+  stats: ScoreStat[];
+}
+
+interface ScoreStat {
+  winner: string;
+  totalMoves: number;
+  boxOrder: number[];
 }
 
 const ScoreCard: React.FC<Props> = (props) => {
   const [active, setActive] = React.useState("");
 
-  const filterList = (stats, content) => {
+  const filterList = (stats: ScoreStat[], content: string): ScoreStat[] => {
     if (content === "Draws") {
       return stats.filter((x) => x.winner === "draw");
     }
@@ -37,8 +39,8 @@ const ScoreCard: React.FC<Props> = (props) => {
     return stats;
   };
 
-  const activeChange = (e, content) => {
-    if (content === active) {
+  const activeChange = (_event: React.MouseEvent<HTMLElement>, content: string | null) => {
+    if (!content || content === active) {
       setActive("");
     } else {
       setActive(content);
@@ -60,8 +62,8 @@ const ScoreCard: React.FC<Props> = (props) => {
       </CardContent>
 
       <CardContent>
-        {Object.entries(filterList(props.stats, active)).map((value, key) => (
-          <ScoreCardItem key={key} {...value[1]} gameNumber={Number(value[0]) + 1} />
+        {filterList(props.stats, active).map((value, index) => (
+          <ScoreCardItem key={index} {...value} gameNumber={index + 1} scoreClicked={props.scoreClicked} />
         ))}
 
         <Button onClick={props.clearScore}>Clear Score</Button>
@@ -70,7 +72,12 @@ const ScoreCard: React.FC<Props> = (props) => {
   );
 };
 
-const ScoreCardItem = (props) => (
+interface ScoreCardItemProps extends ScoreStat {
+  gameNumber: number;
+  scoreClicked?: (boxOrder: number[]) => void;
+}
+
+const ScoreCardItem: React.FC<ScoreCardItemProps> = (props) => (
   <Fade in>
     <List>
       <ListItem>
@@ -89,7 +96,7 @@ const ScoreCardItem = (props) => (
         Winner:
         {props.winner}
       </ListItem>
-      <Button onClick={() => props.scoreClicked(props.boxOrder)}>board</Button>
+      {props.scoreClicked && <Button onClick={() => props.scoreClicked?.(props.boxOrder)}>board</Button>}
       <Divider />
     </List>
   </Fade>

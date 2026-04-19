@@ -14,7 +14,9 @@ export const KEY = {
 };
 
 export default class InputUtility {
-  keys: [boolean] = [null];
+  keys: boolean[] = [];
+
+  private target: Element | null = null;
 
   velY = 0;
 
@@ -30,8 +32,11 @@ export default class InputUtility {
    * @memberof InputUtility
    */
   listen(target: Element) {
+    this.dispose();
+    this.target = target;
     target.addEventListener("pointerdown", this.handleBindMouse);
     target.addEventListener("pointerup", this.handleUnBindMouse);
+    target.addEventListener("pointerleave", this.handleUnBindMouse);
     window.addEventListener("keydown", this.handleBindKeys);
     window.addEventListener("keyup", this.handleUnBindKeys);
   }
@@ -42,6 +47,13 @@ export default class InputUtility {
    * @memberof InputUtility
    */
   dispose() {
+    if (this.target) {
+      this.target.removeEventListener("pointerdown", this.handleBindMouse);
+      this.target.removeEventListener("pointerup", this.handleUnBindMouse);
+      this.target.removeEventListener("pointerleave", this.handleUnBindMouse);
+      this.target = null;
+    }
+
     window.removeEventListener("keydown", this.handleBindKeys);
     window.removeEventListener("keyup", this.handleUnBindKeys);
   }
@@ -49,6 +61,7 @@ export default class InputUtility {
   reset() {
     this.velY = 0;
     this.velX = 0;
+    this.keys = [];
   }
 
   private handleBindMouse = () => {
@@ -59,14 +72,14 @@ export default class InputUtility {
     this.keys[KEY.mouseClick] = false;
   };
 
-  private handleBindKeys = (e) => {
+  private handleBindKeys = (e: KeyboardEvent) => {
     if (Object.values(KEY).includes(e.keyCode)) {
       e.preventDefault();
     }
     this.keys[e.keyCode] = true;
   };
 
-  private handleUnBindKeys = (e) => {
+  private handleUnBindKeys = (e: KeyboardEvent) => {
     e.preventDefault();
     this.keys[e.keyCode] = false;
   };

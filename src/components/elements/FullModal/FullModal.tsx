@@ -1,28 +1,22 @@
-import classNames from 'classnames';
-import * as React from 'react';
+import * as React from "react";
 
-interface Props {
+interface Props extends React.PropsWithChildren {
   visible: boolean;
 }
 
 class FullModal extends React.Component<Props> {
-  state;
-
   render() {
     if (!this.props.visible) {
       return null;
     }
-    const modalClasses = classNames({
-      'w3-show': this.props.visible,
-      'w3-modal': true,
-    });
+    const modalClasses = ["w3-modal", this.props.visible ? "w3-show" : ""].filter(Boolean).join(" ");
     return (
-      <div className={modalClasses} style={{ padding: '0' }}>
+      <div className={modalClasses} style={{ padding: "0" }}>
         <div
           className="w3-modal-content w3-card w3-animate-top"
           style={{
-            height: '100%',
-            width: '100%',
+            height: "100%",
+            width: "100%",
           }}
         >
           {this.props.children}

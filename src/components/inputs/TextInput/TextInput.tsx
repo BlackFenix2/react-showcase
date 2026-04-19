@@ -7,17 +7,15 @@ import { css } from "@emotion/css";
 interface Props {
   label: string;
   value: string;
-  changeEvent: (e: React.SyntheticEvent) => void;
+  changeEvent: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   // hidden?: boolean;
   loading?: boolean;
   placeholder?: string;
   fullWidth?: boolean;
-  Icon?: (props: SvgIconProps) => JSX.Element;
+  Icon?: React.ElementType<SvgIconProps>;
 }
 
 const TextInput: React.FC<Props> = (props) => {
-  const { Icon, loading } = props;
-
   return (
     <div>
       <FormControl
@@ -36,9 +34,9 @@ const TextInput: React.FC<Props> = (props) => {
           label={props.label}
           slotProps={{
             input: {
-              endAdornment: Icon && (
+              endAdornment: props.Icon && (
                 <InputAdornment position="end" sx={{ padding: 0 }}>
-                  <Icon color="primary" />
+                  <props.Icon color="primary" />
                 </InputAdornment>
               ),
             },

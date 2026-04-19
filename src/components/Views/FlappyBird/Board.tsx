@@ -12,11 +12,13 @@ interface Props {
   debug?: boolean;
 }
 
+const KonvaStage = Stage as unknown as React.ComponentType<React.PropsWithChildren<Props>>;
+
 const Board = observer((props: Props) => {
   const BirdStore = React.useContext(birdStore);
 
   return (
-    <Stage width={props.width} height={props.height}>
+    <KonvaStage width={props.width} height={props.height}>
       <Layer>
         <Background width={props.width} height={props.height} />
 
@@ -24,7 +26,7 @@ const Board = observer((props: Props) => {
 
         <PipeList list={BirdStore.PipeList} debug={props.debug} />
       </Layer>
-    </Stage>
+    </KonvaStage>
   );
 });
 

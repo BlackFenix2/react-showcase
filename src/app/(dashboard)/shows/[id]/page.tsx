@@ -13,21 +13,21 @@ const imgStyle = css`
   height: 400px;
 `;
 
-const Details = (props) => {
+interface DetailsProps {
+  params: {
+    id: string;
+  };
+}
+
+const Details: React.FC<DetailsProps> = ({ params }) => {
   const ShowStore = React.useContext(showStore);
 
-  const show = ShowStore.shows.find(
-    (value) => value.id.toString() === props.params.id
-  );
+  const show = ShowStore.shows.find((value) => value.id.toString() === params.id);
 
   return (
     show && (
       <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-          alt="where is the item"
-          className={imgStyle}
-        />
+        <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="where is the item" className={imgStyle} />
         <h1>{show.name || show.title}</h1>
         <p>{show.overview}</p>
         <Link href="/shows">Go Back</Link>

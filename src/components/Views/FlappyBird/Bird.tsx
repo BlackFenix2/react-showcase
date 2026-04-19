@@ -1,14 +1,21 @@
 import * as React from "react";
-import { Image } from "react-konva";
+import { Image as KonvaImage } from "react-konva";
 
 import useImage from "use-image";
 
-const Bird = (props) => {
+interface Props {
+  x: number;
+  y: number;
+  rotation: number;
+  debug?: boolean;
+}
+
+const Bird: React.FC<Props> = (props) => {
   const [image] = useImage(
     "https://raw.githubusercontent.com/olivajames110/jimmyoliva/master/pages/projects/flappy_bird/images/bird.png",
   );
   return (
-    <Image
+    <KonvaImage
       x={props.x}
       y={props.y}
       width={40}

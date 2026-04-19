@@ -67,15 +67,19 @@ const FlipCard: React.FC<Props> = ({ time: newTime, size }) => {
   };
 
   useEffect(() => {
-    setReset(false);
-    if (mounted.current) {
-      setFlip(true);
-    }
-    setTime((prev) => ({
-      currentTime: newTime,
-      previousTime: prev.currentTime ?? newTime,
-    }));
-    mounted.current = true;
+    const frame = window.requestAnimationFrame(() => {
+      setReset(false);
+      if (mounted.current) {
+        setFlip(true);
+      }
+      setTime((prev) => ({
+        currentTime: newTime,
+        previousTime: prev.currentTime ?? newTime,
+      }));
+      mounted.current = true;
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [newTime]);
 
   return (

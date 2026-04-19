@@ -8,7 +8,7 @@ import { Search } from "@mui/icons-material";
 interface Props {
   // item?: string;
   handleSubmit: () => void;
-  change: (e: React.SyntheticEvent) => void;
+  change: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   domain: string;
   loading?: boolean;
 }

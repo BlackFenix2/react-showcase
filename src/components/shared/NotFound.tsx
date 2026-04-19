@@ -1,6 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 
-const NotFound = (props) => (
+interface Props {
+  code?: number | string;
+  message?: string;
+}
+
+const NotFound: React.FC<Props> = (props) => (
   <div>
     <h1>404</h1>
     <p>Path was not found</p>

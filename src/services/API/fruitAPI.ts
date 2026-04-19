@@ -1,20 +1,27 @@
-import { apiRequest, methods } from '../API/apiRoot';
+import { apiRequest, methods } from "./apiRoot";
+
+type FruitId = number | string;
+
+interface FruitPayload {
+  id: FruitId;
+  [key: string]: unknown;
+}
 
 export const fruitAPI = {
-  async addFruit(body) {
-    return apiRequest('/Fruits', methods.POST, body);
+  async addFruit<TResponse = unknown>(body: Record<string, unknown>): Promise<TResponse> {
+    return apiRequest<TResponse>("/Fruits", methods.POST, body);
   },
-  async updateFruit(body) {
-    return apiRequest(`/Fruits/${body.id}`, methods.PUT, body);
+  async updateFruit<TResponse = unknown>(body: FruitPayload): Promise<TResponse> {
+    return apiRequest<TResponse>(`/Fruits/${body.id}`, methods.PUT, body);
   },
-  async deleteFruit(id) {
-    return apiRequest(`/Fruits/${id}`, methods.DELETE);
+  async deleteFruit<TResponse = unknown>(id: FruitId): Promise<TResponse> {
+    return apiRequest<TResponse>(`/Fruits/${id}`, methods.DELETE);
   },
-  async getFruitList() {
-    return apiRequest('/Fruits', methods.GET);
+  async getFruitList<TResponse = unknown>(): Promise<TResponse> {
+    return apiRequest<TResponse>("/Fruits", methods.GET);
   },
-  async getFruit(body) {
-    return apiRequest(`/Fruits/${body.id}`, methods.GET);
+  async getFruit<TResponse = unknown>(body: Pick<FruitPayload, "id">): Promise<TResponse> {
+    return apiRequest<TResponse>(`/Fruits/${body.id}`, methods.GET);
   },
 };
 

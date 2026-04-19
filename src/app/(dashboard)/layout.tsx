@@ -1,7 +1,6 @@
 import * as React from "react";
-import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import Footer from "./Footer";
+import AppShell from "@/components/layout/AppShell";
 
 export default function Layout(props: { children: React.ReactNode }) {
-  return <DashboardLayout>{props.children}</DashboardLayout>;
+  return <AppShell>{props.children}</AppShell>;
 }

@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import Sprite from "./sprite";
 
 export default class Pipe {
   height = 240;
@@ -9,7 +8,8 @@ export default class Pipe {
 
   y: number;
 
-  rotation: number;
+  rotation = 0;
+
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;

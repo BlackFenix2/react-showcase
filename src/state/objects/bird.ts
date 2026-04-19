@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import Sprite from "./sprite";
 
 export default class Bird {
   height = 30;
@@ -10,7 +9,7 @@ export default class Bird {
 
   y: number;
 
-  rotation: number;
+  rotation = 0;
 
   constructor(x: number, y: number) {
     this.x = x;

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { css } from '@emotion/css';
+import * as React from "react";
+import { css } from "@emotion/css";
 
 const gameStyle = css`
   @media screen and (min-width: 767px) {
@@ -66,14 +66,14 @@ const boardStyle = css`
 `;
 
 // TODO remove Global juryrig
-const Board = (props) => (
+interface Props {
+  clicked: (event: React.SyntheticEvent<HTMLDivElement>) => void;
+  gameBoard: Array<string | null>;
+}
+
+const Board: React.FC<Props> = (props) => (
   <div className={gameStyle}>
-    <div
-      role="presentation"
-      className={boardStyle}
-      onClick={props.clicked}
-      onKeyUp={props.clicked}
-    >
+    <div role="presentation" className={boardStyle} onClick={props.clicked} onKeyUp={props.clicked}>
       {props.gameBoard.map((value, i) => (
         <div key={i} data-square={i}>
           {value}

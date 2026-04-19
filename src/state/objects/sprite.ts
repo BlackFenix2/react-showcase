@@ -1,13 +1,15 @@
+import { makeAutoObservable } from "mobx";
+
 export default class Sprite {
   x: number;
 
   y: number;
 
-  rotation: number;
+  rotation = 0;
 
-  width: number;
+  width = 0;
 
-  height: number;
+  height = 0;
 
   constructor(x: number, y: number) {
     this.x = x;

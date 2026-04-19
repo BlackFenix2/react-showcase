@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { domainAPI } from "@/services/API";
 import Debug from "@/components/Views/Domain/Debug";
 import DnsInfo from "@/components/Views/Domain/DnsInfo";
 import DomainCard from "@/components/Views/Domain/DomainCard";
-import { IDomainRecord, WhoisResponse } from "@/components/Views/Domain/domainRecords";
+import { WhoisResponse } from "@/components/Views/Domain/domainRecords";
 import InputForm from "@/components/Views/Domain/InputForm";
 import Legal from "@/components/Views/Domain/Legal";
 import SummaryInfo from "@/components/Views/Domain/SummaryInfo";
@@ -49,28 +48,24 @@ export default function Page() {
   const [state, setState] = React.useState<WhoisResponse>(initialState);
 
   const getDomain = async (domain: string) => {
-    // set the loading state
     setState((prevState) => ({ ...prevState, loading: true }));
 
-    // make the API Calls
-    getDomainWHOIS(domain)
-      .then((response) => {
-        setState((prevState) => ({
-          ...prevState,
-          response,
-          loading: false,
-        }));
-      })
-      .catch((error: any) => {
-        setState((prevState) => ({
-          ...prevState,
-          loading: false,
-          error: true,
-          errorMessage: error.message,
-        }));
-      });
+    try {
+      const response = await getDomainWHOIS(domain);
 
-    // output the API Response
+      setState((prevState) => ({
+        ...prevState,
+        response,
+        loading: false,
+      }));
+    } catch (error) {
+      setState((prevState) => ({
+        ...prevState,
+        loading: false,
+        error: true,
+        errorMessage: error instanceof Error ? error.message : "Unable to load domain data.",
+      }));
+    }
   };
   const change = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState((prevState) => ({

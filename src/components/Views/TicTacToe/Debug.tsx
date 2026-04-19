@@ -1,7 +1,23 @@
-import * as React from 'react';
-import { Grid, Card } from '@mui/material';
+import * as React from "react";
+import { Grid, Card } from "@mui/material";
 
-const Debug = (props) => (
+interface Props {
+  numOfPlayers: number;
+  turn: string;
+  selectedBox: number | null;
+  diagPatternCheck: boolean;
+  acrossPatternCheck: boolean;
+  acrossSpecialCheck: boolean;
+  randomCheck: boolean;
+  totalMoves: number;
+  boxOrder: Array<string | number>;
+  gameEnded: boolean;
+  winner: string | null;
+  gameLocked: boolean;
+  warGamesDelay: number;
+}
+
+const Debug: React.FC<Props> = (props) => (
   <Card>
     <Grid container direction="column" alignItems="center">
       <p>Stats:</p>

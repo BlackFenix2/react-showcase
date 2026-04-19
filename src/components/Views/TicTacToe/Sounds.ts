@@ -1,68 +1,71 @@
-/* eslint-disable no-param-reassign */
-import { circle, cross, game } from "@/lib/audio";
-
-let sounds = {
-  gameSound: null,
-  crossSound: null,
-  circleSound: null,
+type AudioMap = {
+  gameSound: HTMLAudioElement | null;
+  crossSound: HTMLAudioElement | null;
+  circleSound: HTMLAudioElement | null;
 };
 
-// juryrig to catch SSR error for audio objects
-try {
-  sounds = {
-    gameSound: new Audio("/games/game.mp3"),
-    crossSound: new Audio("/games/cross.mp3"),
-    circleSound: new Audio("/games/circle.mp3"),
-  };
-} catch (error) {
-  // caught untill client code.
-}
+const createAudio = (path: string): HTMLAudioElement | null => {
+  if (typeof window === "undefined" || typeof Audio === "undefined") {
+    return null;
+  }
+
+  return new Audio(path);
+};
+
+const sounds: AudioMap = {
+  gameSound: createAudio("/games/game.mp3"),
+  crossSound: createAudio("/games/cross.mp3"),
+  circleSound: createAudio("/games/circle.mp3"),
+};
 
 const status = {
   muted: false,
-  mute: false,
+};
+
+const forEachAudio = (callback: (audio: HTMLAudioElement) => void) => {
+  Object.values(sounds)
+    .filter((audio): audio is HTMLAudioElement => audio !== null)
+    .forEach(callback);
 };
 
 export const checkMute = () => status.muted;
 
 export const muteAll = () => {
-  Object.values(sounds).map((audio: HTMLAudioElement) => {
+  forEachAudio((audio) => {
     audio.load();
     audio.muted = true;
-    return true;
   });
-  status.mute = true;
+  status.muted = true;
 };
 
 export const unMuteAll = () => {
-  Object.values(sounds).map((audio: HTMLAudioElement) => {
+  forEachAudio((audio) => {
     audio.load();
     audio.muted = false;
-    return true;
   });
-  status.mute = false;
+  status.muted = false;
 };
 
 export const toggleMute = () => {
-  if (status.mute) {
+  if (status.muted) {
     unMuteAll();
-    return status.mute;
+    return status.muted;
   }
   muteAll();
-  return status.mute;
+  return status.muted;
 };
 
 export const playCircle = () => {
-  sounds.circleSound.load();
-  sounds.circleSound.play();
+  sounds.circleSound?.load();
+  sounds.circleSound?.play();
 };
 
 export const playCross = () => {
-  sounds.crossSound.load();
-  sounds.crossSound.play();
+  sounds.crossSound?.load();
+  sounds.crossSound?.play();
 };
 
 export const playGame = () => {
-  sounds.gameSound.load();
-  sounds.gameSound.play();
+  sounds.gameSound?.load();
+  sounds.gameSound?.play();
 };

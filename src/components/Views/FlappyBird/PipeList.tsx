@@ -1,20 +1,35 @@
 import * as React from "react";
 
 import { Group } from "react-konva";
+import PipeModel from "@/state/objects/pipe";
 import Pipe from "./Pipe";
 
-const PipeList = (props) =>
-  props.list.map((PipeColumn, index) => (
+interface PipeColumn {
+  NorthPipe: PipeModel;
+  SouthPipe: PipeModel;
+}
+
+interface Props {
+  list: PipeColumn[];
+  debug?: boolean;
+}
+
+const PipeList: React.FC<Props> = (props) =>
+  props.list.map((pipeColumn, index) => (
     <Group key={index}>
       <Pipe
-        x={PipeColumn.NorthPipe.x}
-        y={PipeColumn.NorthPipe.y}
+        x={pipeColumn.NorthPipe.x}
+        y={pipeColumn.NorthPipe.y}
+        width={pipeColumn.NorthPipe.width}
+        height={pipeColumn.NorthPipe.height}
         debug={props.debug}
       />
       <Pipe
         rotate
-        x={PipeColumn.SouthPipe.x}
-        y={PipeColumn.SouthPipe.y}
+        x={pipeColumn.SouthPipe.x}
+        y={pipeColumn.SouthPipe.y}
+        width={pipeColumn.SouthPipe.width}
+        height={pipeColumn.SouthPipe.height}
         debug={props.debug}
       />
     </Group>

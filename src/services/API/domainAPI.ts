@@ -1,44 +1,41 @@
 "use server";
-import { WhoisResponse } from "@/components/Views/Domain/domainRecords";
-import { apiRequest, methods } from "../API/apiRoot";
-import * as whoiser from "whoiser";
-import whois from "whois";
+import { IDomainRecord } from "@/components/Views/Domain/domainRecords";
 
-export const getDomainWHOIS = async (domain: string) => {
-  const test = await whois.lookup("google.com");
-  console.log(test);
-
-  const result: WhoisResponse = {
-    response: {
-      whois: {
-        domain: "",
-        created: "",
-        expired: "",
-        nameservers: [""],
-        domainStatus: [""],
-        admin: {
-          email: "",
-        },
-        registrant: {
-          email: "",
-        },
-        raw: "",
+function createEmptyDomainRecord(domain: string): IDomainRecord {
+  return {
+    whois: {
+      domain,
+      created: "",
+      expired: "",
+      nameservers: [],
+      domainStatus: [],
+      admin: {
+        email: "",
       },
-      dns: {
-        mxRecords: [""],
-        aRecords: [""],
-        cnameRecords: [""],
+      registrant: {
+        email: "",
       },
-      summary: {
-        domainLocked: undefined,
-        emailHost: undefined,
-        domainOwner: undefined,
-      },
+      raw: "",
     },
-    domain: "",
-    loading: false,
-    error: false,
-    errorMessage: "",
+    dns: {
+      mxRecords: [],
+      aRecords: [],
+      cnameRecords: [],
+    },
+    summary: {
+      domainLocked: undefined,
+      emailHost: undefined,
+      domainOwner: undefined,
+    },
   };
-  return result;
+}
+
+export async function getDomainWHOIS(domain: string): Promise<IDomainRecord> {
+  return createEmptyDomainRecord(domain.trim());
+}
+
+const domainAPI = {
+  getDomainWHOIS,
 };
+
+export default domainAPI;
