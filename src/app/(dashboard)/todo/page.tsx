@@ -93,7 +93,7 @@ const Todo = () => {
           >
             <CardContent>
               <Stack spacing={2.5}>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                   <AutoAwesome />
                   <Typography variant="overline" sx={{ letterSpacing: "0.2em" }}>
                     HIGH HEAT PLANNING
@@ -150,7 +150,7 @@ const Todo = () => {
                   />
                 </form>
 
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
                   {suggestionTasks.map((suggestion) => (
                     <Chip
                       key={suggestion}
@@ -178,7 +178,7 @@ const Todo = () => {
               <Grid size={{ xs: 12, sm: 4 }}>
                 <Card sx={{ borderRadius: 4, bgcolor: "background.paper" }}>
                   <CardContent>
-                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                    <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
                       <Box>
                         <Typography variant="overline">Total</Typography>
                         <Typography variant="h3" sx={{ fontWeight: 800 }}>
@@ -193,7 +193,7 @@ const Todo = () => {
               <Grid size={{ xs: 12, sm: 4 }}>
                 <Card sx={{ borderRadius: 4, bgcolor: "background.paper" }}>
                   <CardContent>
-                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                    <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
                       <Box>
                         <Typography variant="overline">Completed</Typography>
                         <Typography variant="h3" sx={{ fontWeight: 800 }}>

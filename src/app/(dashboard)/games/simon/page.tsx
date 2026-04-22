@@ -235,7 +235,7 @@ const SimonSaysPage = () => {
           >
             <CardContent>
               <Stack spacing={2.5}>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                   <Memory sx={{ color: "#ffd166" }} />
                   <Typography variant="overline" sx={{ letterSpacing: "0.2em", opacity: 0.82 }}>
                     MEMORY GAME
@@ -251,7 +251,7 @@ const SimonSaysPage = () => {
                   </Typography>
                 </Box>
 
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
                   <Chip
                     icon={<Bolt />}
                     label={`Round ${round || 1}`}

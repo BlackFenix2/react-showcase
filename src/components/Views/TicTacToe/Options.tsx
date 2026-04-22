@@ -48,7 +48,7 @@ const Options: React.FC<Props> = (props) => (
       <Button variant="contained" color="primary" onClick={props.resetGame} disabled={props.disabled}>
         Reset
       </Button>
-      <Box display="flex" justifyContent="space-between">
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* //TODO fix slider performance bug */}
         <Slider value={props.delay} onChange={props.setDelay} min={100} max={1000} step={100} marks />
         <Chip label={props.delay} />

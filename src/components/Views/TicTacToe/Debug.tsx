@@ -19,7 +19,7 @@ interface Props {
 
 const Debug: React.FC<Props> = (props) => (
   <Card>
-    <Grid container direction="column" alignItems="center">
+    <Grid container sx={{ flexDirection: "column", alignItems: "center" }}>
       <p>Stats:</p>
       <p>
         Players:

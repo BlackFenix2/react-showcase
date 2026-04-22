@@ -13,7 +13,7 @@ const ShowList: React.FC<Props> = (props) => {
     return (
       <Card sx={{ borderRadius: 5, borderStyle: "dashed" }}>
         <CardContent sx={{ py: 8, textAlign: "center" }}>
-          <Stack spacing={2} alignItems="center">
+          <Stack spacing={2} sx={{ alignItems: "center" }}>
             <Chip label="No matches" color="warning" variant="outlined" />
             <Typography variant="h5" sx={{ fontWeight: 800 }}>
               Nothing matched that search.

@@ -78,7 +78,7 @@ const Cats: React.FC<any> = () => {
           >
             <CardContent>
               <Stack spacing={2.5}>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                   <Pets />
                   <Typography variant="overline" sx={{ letterSpacing: "0.18em" }}>
                     ERROR CODES, BUT FURRIER
@@ -99,7 +99,16 @@ const Cats: React.FC<any> = () => {
                     <TextField
                       fullWidth
                       type="number"
-                      inputProps={{ min: 100, max: 599 }}
+                      slotProps={{
+                        htmlInput: { min: 100, max: 599 },
+                        input: {
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <TravelExplore color="primary" />
+                            </InputAdornment>
+                          ),
+                        },
+                      }}
                       placeholder="200, 404, 418..."
                       label="HTTP Status Code"
                       value={result}
@@ -123,15 +132,6 @@ const Cats: React.FC<any> = () => {
                           color: "rgba(17,36,60,0.82)",
                         },
                       }}
-                      slotProps={{
-                        input: {
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <TravelExplore color="primary" />
-                            </InputAdornment>
-                          ),
-                        },
-                      }}
                     />
 
                     <Stack direction={{ xs: "column", sm: "row", md: "column", lg: "row" }} spacing={1.5}>
@@ -145,7 +145,7 @@ const Cats: React.FC<any> = () => {
                   </Stack>
                 </Form>
 
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
                   <Chip label={`Current code: ${number}`} sx={{ bgcolor: "rgba(255,255,255,0.7)" }} />
                   <Chip
                     label={number >= 400 ? "Something broke" : "Mostly harmless"}

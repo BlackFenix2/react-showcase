@@ -53,7 +53,7 @@ const FlappyBird = () => {
           >
             <CardContent>
               <Stack spacing={2.5}>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                   <SportsEsports sx={{ color: "#ffd166" }} />
                   <Typography variant="overline" sx={{ letterSpacing: "0.2em", opacity: 0.82 }}>
                     ARCADE RUN
@@ -69,7 +69,7 @@ const FlappyBird = () => {
                   </Typography>
                 </Box>
 
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
                   <Chip
                     label={`Score ${BirdStore.score}`}
                     sx={{ bgcolor: "rgba(255,255,255,0.12)", color: "inherit" }}

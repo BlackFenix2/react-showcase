@@ -80,7 +80,7 @@ const ShowCard: React.FC<Props> = ({ movie }) => {
               <Typography variant="h6" sx={{ fontWeight: 800, lineHeight: 1.15 }}>
                 {title}
               </Typography>
-              <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 0.75, color: "text.secondary" }}>
+              <Stack direction="row" spacing={1} sx={{ mt: 0.75, color: "text.secondary", alignItems: "center" }}>
                 <CalendarToday sx={{ fontSize: 15 }} />
                 <Typography variant="body2">{releaseLabel}</Typography>
               </Stack>
@@ -101,7 +101,7 @@ const ShowCard: React.FC<Props> = ({ movie }) => {
               {movie.overview || "No overview provided yet."}
             </Typography>
 
-            <Stack direction="row" spacing={1.25} alignItems="center" sx={{ mt: "auto" }}>
+            <Stack direction="row" spacing={1.25} sx={{ mt: "auto", alignItems: "center" }}>
               <Avatar sx={{ bgcolor: "rgba(255,193,92,0.22)", color: "#9a5c00", width: 36, height: 36 }}>
                 <Star sx={{ fontSize: 18 }} />
               </Avatar>

@@ -31,13 +31,7 @@ const getTimeLeft = (date: moment.MomentInput): Timer => {
   };
 };
 
-const CountDown = ({
-  date,
-  label,
-}: {
-  date: moment.MomentInput;
-  label: React.ReactNode;
-}) => {
+const CountDown = ({ date, label }: { date: moment.MomentInput; label: React.ReactNode }) => {
   const [timer, setTimer] = useState<Timer>(() => getTimeLeft(date));
 
   useEffect(() => {
@@ -58,7 +52,7 @@ const CountDown = ({
 
   return (
     <Box>
-      <Typography variant="h3" textAlign="center">
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
         {label}
       </Typography>
       <Box

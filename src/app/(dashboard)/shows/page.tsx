@@ -33,10 +33,10 @@ const Shows = () => {
           }}
         >
           <CardContent sx={{ p: { xs: 3, md: 4 } }}>
-            <Grid container spacing={3} alignItems="end">
+            <Grid container spacing={3} sx={{ alignItems: "flex-end" }}>
               <Grid size={{ xs: 12, md: 7 }}>
                 <Stack spacing={2}>
-                  <Stack direction="row" spacing={1} alignItems="center">
+                  <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                     <AutoAwesome sx={{ color: "#ffca6b" }} />
                     <Typography variant="overline" sx={{ letterSpacing: "0.22em", opacity: 0.8 }}>
                       CURATED FROM TODAY&apos;S TRENDING FEED
@@ -86,7 +86,7 @@ const Shows = () => {
                     }}
                   />
 
-                  <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                  <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
                     <Chip
                       icon={<Whatshot />}
                       label={`${totalResults} results`}

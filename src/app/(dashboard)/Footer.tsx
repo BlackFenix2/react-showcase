@@ -45,8 +45,8 @@ const CopyRight = () => (
 
 const Footer = () => (
   <Paper square>
-    <Box paddingTop={2}>
-      <Grid container direction="column" justifyContent="center" alignItems="center">
+    <Box sx={{ pt: 2 }}>
+      <Grid container sx={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
         <Typography>Feel free to reach out!</Typography>
         <Icons />
         <CopyRight />

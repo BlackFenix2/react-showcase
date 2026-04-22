@@ -22,7 +22,7 @@ const CountdownUnit = (props: CountdownUnitProps) => {
         position: "relative",
       }}
     >
-      <Typography variant="h5" textAlign="center" marginBottom={1}>
+      <Typography variant="h5" sx={{ textAlign: "center", mb: 1 }}>
         {props.label}
       </Typography>
       <CircularProgress
